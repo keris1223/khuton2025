@@ -121,7 +121,7 @@ print(f"원본 밝기 배열 크기: {brightness.shape}")
 
 
 flat = brightness.reshape(-1, 1)  
-cluster_num = 5 # 심을 작물 개수
+cluster_num = int(input("작물의 종류가 몇개인가요:")) # 심을 작물 개수
 kmeans = KMeans(n_clusters=cluster_num, random_state=42)
 kmeans.fit(flat)
 labels = kmeans.labels_
