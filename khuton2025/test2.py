@@ -63,7 +63,14 @@ def strict_score_based_recommendation_by_light(temp, hum, lights, df, max_recomm
             })
 
         # 점수 내림차순 정렬 후 상위 N개만 저장
-        top_plants = sorted(scored_plants, key=lambda x: x["점수"], reverse=True)[:max_recommend]
+        if scored_plants:
+            top_plants = sorted(scored_plants, key=lambda x: x["점수"], reverse=True)[:max_recommend]
+        else:
+            top_plants = [{
+                "조도": light,
+                "식물": "너무 밝음",
+                "점수": "0"
+            }]
         results[light] = top_plants
 
     # 전체 결과 하나의 리스트로 결합
