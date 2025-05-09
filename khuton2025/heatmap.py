@@ -12,7 +12,7 @@ frame_count = 0
 brightness_sum = None
 
 cv2.namedWindow("Live Feed")
-cv2.namedWindow("Heatmap + Recommendation")
+cv2.namedWindow("Heatmap")
 
 print("[INFO] 실시간 분석 시작. ESC로 종료")
 
@@ -41,11 +41,11 @@ while True:
         heatmap_resized = cv2.resize(heatmap, (frame.shape[1], frame.shape[0]))
         np.savetxt("output/brightness_array.csv", avg_brightness_map, delimiter=",")
 
-        cv2.imshow("Heatmap + Recommendation", heatmap_resized)
-
+        cv2.imshow("Heatmap", heatmap_resized)
+        cv2.imwrite("output/heatmap.png", heatmap)
     # Live Feed 항상 출력
     cv2.imshow("Live Feed", display_frame)
-
+    cv2.imwrite("output/live.png",display_frame)
     key = cv2.waitKey(1)
     if key == 27 or (frame_count // frame_interval) >= accumulated_frames:
         break
