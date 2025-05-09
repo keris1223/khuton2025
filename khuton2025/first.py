@@ -29,7 +29,7 @@ plt.axis('off')
 
 plt.subplot(1, 2, 2)
 plt.imshow(segmented, cmap='viridis')
-plt.title('6-Region K-Means Segmentation')
+plt.title(f"{cluster_num}-Region K-Means Segmentation")
 plt.axis('off')
 
 plt.tight_layout()
