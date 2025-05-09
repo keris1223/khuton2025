@@ -7,13 +7,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
-df = pd.read_csv("brightness_array.csv", header=None)
+df = pd.read_csv("output/brightness_array.csv", header=None)
 brightness = df.values
 print(f"원본 밝기 배열 크기: {brightness.shape}")
 
-flat = brightness.reshape(-1, 1)  
 
-kmeans = KMeans(n_clusters=3, random_state=42)
+flat = brightness.reshape(-1, 1)  
+cluster_num = int(input("심을 작물의 가짓수를 입력해 주세요 :")) # 심을 작물 개수
+kmeans = KMeans(n_clusters=cluster_num, random_state=42)
 kmeans.fit(flat)
 labels = kmeans.labels_
 
@@ -57,7 +58,7 @@ for i, (b, l) in enumerate(sorted_pairs):
 
     strlis = []
 
-for i in range(3):
+for i in range(cluster_num):
     if list[i] <= 10000:
         strlis.append("상추")
     elif list[i] <= 20000:
@@ -76,6 +77,8 @@ for i in range(3):
         strlis.append("멜론")
     elif list[i] <= 90000:
         strlis.append("해바라기")
+    elif list[i] <= 100000:
+        strlis.append("너무 밝음")
 
-for i in range(3):
+for i in range(cluster_num):
     print(strlis[i])

@@ -39,13 +39,14 @@ while True:
         # 히트맵 생성
         heatmap = cv2.applyColorMap(normalized, cv2.COLORMAP_HOT)
         heatmap_resized = cv2.resize(heatmap, (frame.shape[1], frame.shape[0]))
-        np.savetxt("output/brightness_array.csv", avg_brightness_map, delimiter=",")
+        np.savetxt("Output/brightness_array.csv", avg_brightness_map, delimiter=",")
 
         cv2.imshow("Heatmap", heatmap_resized)
-        cv2.imwrite("output/heatmap.png", heatmap)
+        cv2.imwrite("Output/heatmap.png", heatmap)
+
     # Live Feed 항상 출력
     cv2.imshow("Live Feed", display_frame)
-    cv2.imwrite("output/live.png",display_frame)
+    cv2.imwrite("Output/live.png",display_frame)
     key = cv2.waitKey(1)
     if key == 27 or (frame_count // frame_interval) >= accumulated_frames:
         break
