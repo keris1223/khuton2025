@@ -115,7 +115,7 @@ sensor_temperature = round(row["평균기온(℃)"],4)
 sensor_humidity = round(row["평균습도(%)"],4)
 
 # LUX 값 가져오기
-df = pd.read_csv("output/brightness_array.csv", header=None)
+df = pd.read_csv("brightness_array.csv", header=None)
 brightness = df.values
 print(f"원본 밝기 배열 크기: {brightness.shape}")
 
